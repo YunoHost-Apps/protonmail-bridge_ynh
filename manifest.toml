@@ -48,8 +48,8 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/ProtonMail/proton-bridge/archive/refs/tags/v3.4.2.tar.gz"
-        sha256 = "62dd61b94302e18e788a816183affa5bd10a21efe28e37d197509f4cd9be0379"
+        url = "https://github.com/ProtonMail/proton-bridge/archive/refs/tags/v3.6.1.tar.gz"
+        sha256 = "2dd18b5460fff9c84edaf3eb7401357e8d311c3e63564db8c5adcb63e54877af"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
