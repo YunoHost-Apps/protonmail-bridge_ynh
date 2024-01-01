@@ -7,7 +7,7 @@ name = "ProtonMail Bridge"
 description.en = "Use Proton Mail with your email client"
 description.fr = "Utilisez Proton Mail avec votre client de messagerie"
 
-version = "3.4.2~ynh1"
+version = "3.6.1~ynh1"
 
 maintainers = ["CodeShakingSheep"]
 
