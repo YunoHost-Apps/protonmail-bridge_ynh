@@ -7,7 +7,7 @@ name = "ProtonMail Bridge"
 description.en = "Use Proton Mail with your email client"
 description.fr = "Utilisez Proton Mail avec votre client de messagerie"
 
-version = "3.6.1~ynh1"
+version = "3.12.0~ynh1"
 
 maintainers = ["CodeShakingSheep"]
 
@@ -19,7 +19,7 @@ userdoc = "https://proton.me/support/protonmail-bridge-install"
 code = "https://github.com/ProtonMail/proton-bridge"
 
 [integration]
-yunohost = ">= 11.1.21"
+yunohost = ">= 11.2.20"
 architectures = "amd64"
 multi_instance = true
 ldap = false
@@ -31,15 +31,23 @@ ram.runtime = "50M"
 [install]
 
     [install.admin]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
     type = "user"
 
+    [install.user]
+    type = "string"
+    help.en = "Enter your Protonmail account user"
+    help.fr = "Entrez l'utilisateur de votre compte ProtonMail"
+
     [install.password]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    # Note that user-provided passwords questions are not automatically saved as setting
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+    help.en = "Enter your Protonmail account password"
+    help.fr = "Entrez le mot de passe du compte ProtonMail"
     type = "password"
+
+    [install.2fa]
+    help.en = "If you have 2FA enabled for your account, enter the current code"
+    help.fr = "Si 2FA a activé pour votre compte, entrez le code actuel"
+    type = "password"
+    default = ""
 
 [resources]
     # See the packaging documentation for the full set
@@ -48,25 +56,13 @@ ram.runtime = "50M"
     [resources.sources]
 
         [resources.sources.main]
-        url = "https://github.com/ProtonMail/proton-bridge/archive/refs/tags/v3.6.1.tar.gz"
-        sha256 = "2dd18b5460fff9c84edaf3eb7401357e8d311c3e63564db8c5adcb63e54877af"
+        url = "https://github.com/ProtonMail/proton-bridge/archive/refs/tags/v3.12.0.tar.gz"
+        sha256 = "4215fd1848fff262da55194270f495e19722cdf8bbf98dbe3ca4ff5ca5aa4a1f"
         autoupdate.strategy = "latest_github_tag"
 
     [resources.system_user]
-    # This will provision/deprovision a unix system user
 
     [resources.install_dir]
-    # This will create/remove the install dir as /var/www/$app
-    # and store the corresponding setting $install_dir
-
-    [resources.data_dir]
-    # This will create/remove the data dir as /home/yunohost.app/$app
-    # and store the corresponding setting $data_dir
-
-    [resources.permissions]
-    # This will configure SSOwat permission for $domain/$path/
-    # The initial allowed group of user is configured via the init_main_permission question (public=visitors, private=all_users)
-    main.url = "/"
 
     [resources.apt]
-    packages = "gpg, pass"
+    packages = "gpg, libsecret-1-dev, pass"
