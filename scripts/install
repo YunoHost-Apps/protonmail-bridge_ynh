@@ -49,7 +49,9 @@ ynh_remove_go
 #=================================================
 # LOGIN USER TO BRIDGE
 #=================================================
-ynh_exec_warn_less ynh_exec_as $app echo -e "login"\n"$user"\n"$password"\n"$2fa" | ./bridge --cli
+ynh_script_progression --message="Loggin in user to $app... (depending on the amount of mails this can take seconds or several minutes)" --weight=1
+ynh_exec_warn_less ynh_exec_as $app echo -e "login"\n"$user"\n"$password"\n"$2fa" | ./bridge --cli & PID=$
+wait $PID
 
 #=================================================
 # SYSTEM CONFIGURATION
