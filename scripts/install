@@ -13,8 +13,12 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
+user=$YNH_APP_ARG_USER
+ynh_app_setting_set --app=$app --key=user --value="$user"
 password=$YNH_APP_ARG_PASSWORD
 ynh_app_setting_set --app=$app --key=password --value="$password"
+2fa=$YNH_APP_ARG_2FA
+ynh_app_setting_set --app=$app --key=2fa --value="$2fa"
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
@@ -41,6 +45,11 @@ ynh_use_go
 ynh_exec_warn_less ynh_exec_as $app make build-nogui
 
 ynh_remove_go
+
+#=================================================
+# LOGIN USER TO BRIDGE
+#=================================================
+ynh_exec_warn_less ynh_exec_as $app echo -e "login"\n"$user"\n"$password"\n"$2fa" | ./bridge --cli
 
 #=================================================
 # SYSTEM CONFIGURATION

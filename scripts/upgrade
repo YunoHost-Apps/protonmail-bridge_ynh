@@ -52,6 +52,11 @@ ynh_remove_go
 chown -R $app:www-data "$install_dir"
 
 #=================================================
+# LOGIN USER TO BRIDGE
+#=================================================
+ynh_exec_warn_less ynh_exec_as $app echo -e "login"\n"$user"\n"$password"\n"$2fa" | ./bridge --cli
+
+#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
