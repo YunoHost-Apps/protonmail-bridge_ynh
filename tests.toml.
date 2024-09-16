@@ -1,0 +1,16 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/tests.v1.schema.json
+
+test_format = 1.0
+
+[default]
+
+    # -------------------------------
+    # Default args to use for install
+    # -------------------------------
+
+    args.user = "dummy_user"
+    args.twofa = 123456
+
+    # -------------------------------
+    # Commits to test upgrade from
+    # -------------------------------
