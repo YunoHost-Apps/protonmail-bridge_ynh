@@ -42,7 +42,7 @@ ynh_script_progression --message="Building app..." --weight=1
 ynh_exec_warn_less ynh_install_go --go_version=$go_version
 ynh_use_go
 
-pushd $install_dir
+pushd $install_dir/build
     ynh_exec_warn_less make build-nogui
 popd
 
