@@ -16,7 +16,7 @@ NON debe editarse manualmente.
 
 ## Vista xeral
 
-This is a dummy description of this app features
+Use Proton Mail with your email client.
 
 
 **Versión proporcionada:** 3.12.0~ynh1

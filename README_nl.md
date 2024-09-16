@@ -16,7 +16,7 @@ Hij mag NIET handmatig aangepast worden.
 
 ## Overzicht
 
-This is a dummy description of this app features
+Use Proton Mail with your email client.
 
 
 **Geleverde versie:** 3.12.0~ynh1

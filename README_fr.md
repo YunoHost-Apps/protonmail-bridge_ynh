@@ -16,7 +16,7 @@ Il NE doit PAS être modifié à la main.
 
 ## Vue d’ensemble
 
-Ceci est une fausse description des fonctionalités de l'app
+Use Proton Mail with your email client.
 
 
 **Version incluse :** 3.12.0~ynh1

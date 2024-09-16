@@ -16,7 +16,7 @@ It shall NOT be edited by hand.
 
 ## Overview
 
-This is a dummy description of this app features
+Use Proton Mail with your email client.
 
 
 **Shipped version:** 3.12.0~ynh1

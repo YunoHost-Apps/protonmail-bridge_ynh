@@ -16,7 +16,7 @@ EZ editatu eskuz.
 
 ## Aurreikuspena
 
-This is a dummy description of this app features
+Use Proton Mail with your email client.
 
 
 **Paketatutako bertsioa:** 3.12.0~ynh1

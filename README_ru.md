@@ -16,7 +16,7 @@
 
 ## Обзор
 
-This is a dummy description of this app features
+Use Proton Mail with your email client.
 
 
 **Поставляемая версия:** 3.12.0~ynh1

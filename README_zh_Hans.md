@@ -16,7 +16,7 @@
 
 ## 概况
 
-This is a dummy description of this app features
+Use Proton Mail with your email client.
 
 
 **分发版本：** 3.12.0~ynh1
