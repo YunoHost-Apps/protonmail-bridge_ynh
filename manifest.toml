@@ -20,7 +20,7 @@ code = "https://github.com/ProtonMail/proton-bridge"
 
 [integration]
 yunohost = ">= 11.2.20"
-architectures = "amd64"
+architectures = ["amd64"]
 multi_instance = true
 ldap = false
 sso = false
@@ -35,17 +35,17 @@ ram.runtime = "50M"
 
     [install.user]
     type = "string"
-    help.en = "Enter your Protonmail account user"
-    help.fr = "Entrez l'utilisateur de votre compte ProtonMail"
+    ask.en = "Enter your Protonmail account user"
+    ask.fr = "Entrez l'utilisateur de votre compte ProtonMail"
 
     [install.password]
     help.en = "Enter your Protonmail account password"
     help.fr = "Entrez le mot de passe du compte ProtonMail"
     type = "password"
 
-    [install.2fa]
-    help.en = "If you have 2FA enabled for your account, enter the current code"
-    help.fr = "Si 2FA a activé pour votre compte, entrez le code actuel"
+    [install.twofa]
+    ask.en = "If you have 2FA enabled for your account, enter the current code"
+    ask.fr = "Si 2FA a activé pour votre compte, entrez le code actuel"
     type = "password"
     default = ""
 
