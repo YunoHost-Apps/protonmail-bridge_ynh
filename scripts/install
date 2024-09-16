@@ -18,7 +18,7 @@ ynh_app_setting_set --app=$app --key=user --value="$user"
 password=$YNH_APP_ARG_PASSWORD
 ynh_app_setting_set --app=$app --key=password --value="$password"
 twofa=$YNH_APP_ARG_TWOFA
-ynh_app_setting_set --app=$app --key=twofa --value="$wofa"
+ynh_app_setting_set --app=$app --key=twofa --value="$twofa"
 
 #=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
