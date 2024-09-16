@@ -12,7 +12,7 @@ version = "3.12.0~ynh1"
 maintainers = ["CodeShakingSheep"]
 
 [upstream]
-license = "GNU 3.0"
+license = "AGPL-3.0-or-later"
 website = "https://proton.me/mail/bridge"
 admindoc = "https://proton.me/support/protonmail-bridge-install"
 userdoc = "https://proton.me/support/protonmail-bridge-install"
