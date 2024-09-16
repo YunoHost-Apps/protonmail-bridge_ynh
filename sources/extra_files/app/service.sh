@@ -3,7 +3,7 @@
 case "$1" in
   start)
     # will create a screen in detached mode (background) with name "protonmail"
-    screen -S protonmail -dm ./bridge --cli
+    screen -S protonmail -dm .././bridge --cli
     echo "Service started."
     ;;
   status)
