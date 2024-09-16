@@ -42,7 +42,9 @@ ynh_script_progression --message="Building app..." --weight=1
 ynh_exec_warn_less ynh_install_go --go_version=$go_version
 ynh_use_go
 
-ynh_exec_warn_less ynh_exec_as $app make build-nogui
+pushd $install_dir
+    ynh_exec_warn_less ynh_exec_as $app make build-nogui
+popd
 
 ynh_remove_go
 
