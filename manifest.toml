@@ -66,4 +66,4 @@ ram.runtime = "50M"
     [resources.install_dir]
 
     [resources.apt]
-    packages = "gpg, libsecret-1-dev, pass, zip, cmake, build-essential, ninja"
+    packages = "gpg, libsecret-1-dev, pass, zip, cmake, build-essential, ninja-build"
