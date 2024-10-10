@@ -10,20 +10,52 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# RETRIEVE ARGUMENTS FROM THE MANIFEST
+#=================================================
+
+user=$YNH_APP_ARG_USER
+ynh_app_setting_set --app=$app --key=user --value="$user"
+password=$YNH_APP_ARG_PASSWORD
+ynh_app_setting_set --app=$app --key=password --value="$password"
+twofa=$YNH_APP_ARG_TWOFA
+ynh_app_setting_set --app=$app --key=twofa --value="$twofa"
+
+#=================================================
 # APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-### `ynh_setup_source` is used to install an app from a zip or tar.gz file,
-### downloaded from an upstream source, like a git repository.
-### `ynh_setup_source` use the file conf/app.src
-
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir"
+ynh_setup_source --dest_dir="$install_dir/build"
 
 chown -R $app:www-data "$install_dir"
+
+#=================================================
+# SPECIFIC SETUP
+#=================================================
+# BUILD APP
+#=================================================
+ynh_script_progression --message="Building app..." --weight=1
+
+ynh_exec_warn_less ynh_install_go --go_version=$go_version
+GOCACHE=/opt/goenv/cache
+export GOCACHE
+ynh_use_go
+
+pushd $install_dir/build
+    ynh_exec_warn_less make build-nogui
+popd
+
+ynh_remove_go
+
+#=================================================
+# LOGIN USER TO BRIDGE
+#=================================================
+ynh_script_progression --message="Loggin in user to $app... (depending on the amount of mails this can take seconds or several minutes)" --weight=1
+ynh_exec_warn_less ynh_exec_as $app echo -e "login"\n"$user"\n"$password"\n"$twofa" | ./bridge --cli & PID=$
+wait $PID
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -37,66 +69,11 @@ yunohost service add $app --description="Use Proton Mail with your email client"
 
 
 #=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-### You can add specific configuration files.
-###
-### Typically, put your template conf file in ../conf/your_config_file
-### The template may contain strings such as __FOO__ or __FOO_BAR__,
-### which will automatically be replaced by the values of $foo and $foo_bar
-###
-### ynh_add_config will also keep track of the config file's checksum,
-### which later during upgrade may allow to automatically backup the config file
-### if it's found that the file was manually modified
-###
-### Check the documentation of `ynh_add_config` for more info.
-
-ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
-
-# FIXME: this should be handled by the core in the future
-# You may need to use chmod 600 instead of 400,
-# for example if the app is expected to be able to modify its own config
-chmod 400 "$install_dir/some_config_file"
-chown $app:$app "$install_dir/some_config_file"
-
-### For more complex cases where you want to replace stuff using regexes,
-### you shoud rely on ynh_replace_string (which is basically a wrapper for sed)
-### When doing so, you also need to manually call ynh_store_file_checksum
-###
-### ynh_replace_string --match_string="match_string" --replace_string="replace_string" --target_file="$install_dir/some_config_file"
-### ynh_store_file_checksum --file="$install_dir/some_config_file"
-
-#=================================================
-# SETUP APPLICATION WITH CURL
-#=================================================
-
-### Use these lines only if the app installation needs to be finalized through
-### web forms. We generally don't want to ask the final user,
-### so we're going to use curl to automatically fill the fields and submit the
-### forms.
-
-# Installation with curl
-ynh_script_progression --message="Finalizing installation..." --weight=1
-ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
-
-#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
-
-### `ynh_systemd_action` is used to start a systemd service for an app.
-### Only needed if you have configure a systemd service
-### If you're not using these lines:
-###		- Remove the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the backup script
-###		- As well as the section "START SYSTEMD SERVICE" in the restore script
-###		- As well as the section"STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the upgrade script
-###		- And the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the change_url script
 
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
