@@ -33,7 +33,7 @@ chmod u+x /etc/profile.d/goenv.sh
 GOCACHE=/opt/goenv/cache
 export GOCACHE
 pushd $install_dir
-make build build-nogui
+make build-nogui
 popd
 ynh_go_remove
 chown -R "$app:$app" "$install_dir"
