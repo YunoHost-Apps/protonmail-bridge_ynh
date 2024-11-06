@@ -41,9 +41,9 @@ chown -R "$app:$app" "$install_dir"
 #=================================================
 # LOGIN USER TO BRIDGE
 #=================================================
-ynh_script_progression "Loggin in user to $app... (depending on the amount of mails this can take seconds or several minutes)"
+ynh_script_progression "Logging in user to $app... (depending on the amount of mails this can take seconds or several minutes)"
 
-ynh_hide_warnings ynh_exec_as_app echo -e "login"\n"$user"\n"$password"\n"$twofa" | ./bridge --cli & PID=$
+ynh_hide_warnings ynh_exec_as_app echo -e "login"\n"$user"\n"$password"\n"$twofa" | $install_dir/./bridge --cli & PID=$
 wait $PID
 
 #=================================================
