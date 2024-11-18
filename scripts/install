@@ -34,7 +34,6 @@ GOCACHE=/opt/goenv/cache
 export GOCACHE
 pushd $install_dir
 make build-nogui
-ynh_hide_warnings ynh_exec_as_app echo -e "login\n${user}\n${password}\n${twofa}\n" | ./bridge --cli
 popd
 ynh_go_remove
 chown -R "$app:$app" "$install_dir"
@@ -42,7 +41,7 @@ chown -R "$app:$app" "$install_dir"
 #=================================================
 # LOGIN USER TO BRIDGE
 #=================================================
-ynh_script_progression "Logging in user to $app... (depending on the amount of mails this can take seconds or several minutes)"
+#ynh_script_progression "Logging in user to $app... (depending on the amount of mails this can take seconds or several minutes)"
 
 #ynh_hide_warnings ynh_exec_as_app echo -e "login\n${user}\n${password}\n${twofa}\n" | $install_dir/./bridge --cli
 
