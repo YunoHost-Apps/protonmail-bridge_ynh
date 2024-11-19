@@ -19,7 +19,8 @@ userdoc = "https://proton.me/support/protonmail-bridge-install"
 code = "https://github.com/ProtonMail/proton-bridge"
 
 [integration]
-yunohost = ">= 11.2.20"
+yunohost = ">= 11.2.30"
+helpers_version = "2.1"
 architectures = ["amd64"]
 multi_instance = true
 ldap = false
@@ -65,4 +66,4 @@ ram.runtime = "50M"
     [resources.install_dir]
 
     [resources.apt]
-    packages = "gpg, libsecret-1-dev, pass"
+    packages = "gpg, libsecret-1-dev, pass, zip, cmake, build-essential, ninja-build"
