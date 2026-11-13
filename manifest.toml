@@ -67,3 +67,6 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "gpg, libsecret-1-dev, pass, zip, cmake, build-essential, ninja-build"
+
+    [resources.go]
+    version = "1.26"
