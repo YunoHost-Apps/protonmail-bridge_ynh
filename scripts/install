@@ -7,11 +7,8 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-user=$YNH_APP_ARG_USER
 ynh_app_setting_set --key=user --value="$user"
-password=$YNH_APP_ARG_PASSWORD
 ynh_app_setting_set --key=password --value="$password"
-twofa=$YNH_APP_ARG_TWOFA
 ynh_app_setting_set --key=twofa --value="$twofa"
 
 #=================================================
